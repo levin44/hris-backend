@@ -1,0 +1,32 @@
+{
+  "name": "hris-backend",
+  "version": "1.0.0",
+  "description": "A comprehensive backend solution tailored specifically for Human Resource Information Systems (HRIS). This npm package provides a robust foundation for managing employee data, payroll processing, benefits administration, attendance and other essential HR functions. Designed with performance and security in mind, it offers seamless integration with MySql databases and third-party APIs, ensuring smooth communication between different HR modules. With customizable features, this backend solution empowers HR teams to streamline their processes and enhance organizational efficiency.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/levin44/hris-backend.git"
+  },
+  "author": "Nisal Dayan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/levin44/hris-backend/issues"
+  },
+  "homepage": "https://github.com/levin44/hris-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.7",
+    "sequelize": "^6.37.3"
+  }
+}

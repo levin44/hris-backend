@@ -1,0 +1,7 @@
+username 1
+password sn%5a0g#6
+role admin
+
+username 2
+password th#1p7$g6
+role emp
