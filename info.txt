@@ -1,7 +1,7 @@
 username 1
-password sn%5a0g#6
+password 
 role admin
 
 username 2
-password th#1p7$g6
+password 5m1nd&n$3
 role emp
