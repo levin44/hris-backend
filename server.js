@@ -9,7 +9,8 @@ const morgan = require("morgan");
 require('dotenv').config()
 const app = express();
 const userRouter = require("./src/routes/user.routes");
-const db = require("./src/models");
+const designationRouter = require("./src/routes/designation.routes");
+
 
 //----------------MIDDLEWARES--------------------
 app.use(morgan('dev'));
@@ -20,7 +21,7 @@ app.use(express.json());
 // Enable requests from all origins
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["POST","GET"],
+    methods: ["POST","GET","DELETE","UPDATE"],
     credentials: true
 }));
 app.use(cookieParser())
@@ -31,16 +32,17 @@ app.use(express.urlencoded({ extended: true }));
 
 //------------------SETTINGS----------------
 const PORT = process.env.PORT || 4000; // set port, listen for requests
-const salt =10;
-const sqldb = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'flexy_hris'
-});
+// const salt =10;
+// const sqldb = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'flexy_hris'
+// });
 
 //------------------ROUTES------------------
 app.use("/api/users", userRouter);
+app.use("/api/designation", designationRouter);
 
 
 
