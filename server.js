@@ -8,8 +8,10 @@ const morgan = require("morgan");
 
 require('dotenv').config()
 const app = express();
+
 const userRouter = require("./src/routes/user.routes");
 const designationRouter = require("./src/routes/designation.routes");
+const departmentRouter = require("./src/routes/department.routes");
 
 
 //----------------MIDDLEWARES--------------------
@@ -43,6 +45,7 @@ const PORT = process.env.PORT || 4000; // set port, listen for requests
 //------------------ROUTES------------------
 app.use("/api/users", userRouter);
 app.use("/api/designation", designationRouter);
+app.use("/api/department", departmentRouter);
 
 
 
