@@ -1,10 +1,10 @@
 const sql = require('../config/database');
 
 module.exports = {
-  create: (data, callBack) => {
+  createDepartment: (data, callBack) => {
     sql.query(
-      `INSERT INTO users (Emp_ID, Passwords, Role) VALUES (?, ?, ?)`,
-      [data.username, data.password, data.role],
+      `INSERT INTO department (Name) VALUES (?)`,
+      [data.name],
       (error, results) => {
         if (error) {
           return callBack(error);

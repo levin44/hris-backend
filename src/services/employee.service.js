@@ -1,9 +1,10 @@
-const designationModel = require('../models/designation.model');
+const employeeModel = require('../models/employee.model');
+
 
 module.exports = {
-  createDesignation: (data, callBack) => {
+  createEmployee: (data, callBack) => {
 
-    designationModel.createDesignation(data, (err, results) => {
+    employeeModel.createEmployee(data, (err, results) => {
       if (err) {
         return callBack(err);
       }
@@ -11,8 +12,8 @@ module.exports = {
     });
   },
 
-  getDesignationsById: (id, callBack) => {
-    designationModel.getDesignationsById(id, (err, results) => {
+  getEmployeesById: (id, callBack) => {
+    employeeModel.getEmployeesById(id, (err, results) => {
       if (err) {
         return callBack(err);
       }
@@ -23,8 +24,8 @@ module.exports = {
     });
   },
 
-  getDesignationsByDepartment: (id, callBack) => {
-    designationModel.getDesignationsByDepartment(id, (err, results) => {
+  getEmployeesByDepartment: (id, callBack) => {
+    employeeModel.getEmployeesByDepartment(id, (err, results) => {
       if (err) {
         return callBack(err);
       }
@@ -35,8 +36,8 @@ module.exports = {
     });
   },
 
-  getDesignations: callBack => {
-    designationModel.getDesignations((err, results) => {
+  getEmployees: callBack => {
+    employeeModel.getEmployees((err, results) => {
       if (err) {
         return callBack(err);
       }
@@ -44,9 +45,9 @@ module.exports = {
     });
   },
 
-  updateDesignation: (id, data, callBack) => {
+  updateEmployee: (id, data, callBack) => {
   
-    designationModel.updateDesignation(id, data, (err, results) => {
+    employeeModel.updateEmployee(id, data, (err, results) => {
       if (err) {
         return callBack(err);
       }
@@ -54,8 +55,8 @@ module.exports = {
     });
   },
 
-  deleteDesignation: (id, callBack) => {
-    designationModel.deleteDesignation(id, (err, results) => {
+  deleteEmployee: (id, callBack) => {
+    employeeModel.deleteEmployee(id, (err, results) => {
       if (err) {
         return callBack(err);
       }
@@ -63,6 +64,7 @@ module.exports = {
     });
   },
 
+  
   
 
 };

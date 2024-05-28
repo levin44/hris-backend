@@ -1,9 +1,9 @@
 const designationService = require('../services/designation.service');
 
 module.exports = {
-  createUser: (req, res) => {
+  createDesignation: (req, res) => {
     const data = req.body;
-    userService.createUser(data, (err, results) => {
+    designationService.createDesignation(data, (err, results) => {
       if (err) {
         return res.status(500).json({ success: 0, message: err.message });
       }
@@ -14,6 +14,16 @@ module.exports = {
   getDesignationsById: (req, res) => {
     const id = req.params.id;
     designationService.getDesignationsById(id, (err, results) => {
+      if (err) {
+        return res.status(404).json({ success: 0, message: err.message });
+      }
+      return res.status(200).json({ success: 1, data: results });
+    });
+  },
+
+  getDesignationsByDepartment: (req, res) => {
+    const id = req.params.id;
+    designationService.getDesignationsByDepartment(id, (err, results) => {
       if (err) {
         return res.status(404).json({ success: 0, message: err.message });
       }
