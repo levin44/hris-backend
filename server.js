@@ -13,6 +13,7 @@ const userRouter = require("./src/routes/user.routes");
 const designationRouter = require("./src/routes/designation.routes");
 const departmentRouter = require("./src/routes/department.routes");
 const employeeRouter = require("./src/routes/employee.routes");
+const taskRouter = require("./src/routes/task.routes");
 
 
 //----------------MIDDLEWARES--------------------
@@ -48,6 +49,7 @@ app.use("/api/users", userRouter);
 app.use("/api/designation", designationRouter);
 app.use("/api/department", departmentRouter);
 app.use("/api/employee", employeeRouter);
+app.use("/api/task", taskRouter);
 
 
 
