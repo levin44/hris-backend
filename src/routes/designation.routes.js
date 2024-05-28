@@ -8,7 +8,7 @@ router.get('/', designationController.getDesignations);
 router.delete('/:id', designationController.deleteDesignation);
 router.put('/:id', designationController.updateDesignation);
 
-// router.post('/',  userController.createUser);
+router.post('/', designationController.createDesignation);
 router.get('/:id', designationController.getDesignationsById);
 // router.patch('/', checkToken, userController.updateUser);
 // router.post('/login', userController.login);

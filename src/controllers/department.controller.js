@@ -1,9 +1,9 @@
 const departmentService = require('../services/department.service');
 
 module.exports = {
-  createUser: (req, res) => {
+  createDepartment: (req, res) => {
     const data = req.body;
-    userService.createUser(data, (err, results) => {
+    departmentService.createDepartment(data, (err, results) => {
       if (err) {
         return res.status(500).json({ success: 0, message: err.message });
       }

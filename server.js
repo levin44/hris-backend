@@ -12,6 +12,7 @@ const app = express();
 const userRouter = require("./src/routes/user.routes");
 const designationRouter = require("./src/routes/designation.routes");
 const departmentRouter = require("./src/routes/department.routes");
+const employeeRouter = require("./src/routes/employee.routes");
 
 
 //----------------MIDDLEWARES--------------------
@@ -23,7 +24,7 @@ app.use(express.json());
 // Enable requests from all origins
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["POST","GET","DELETE","UPDATE"],
+    methods: ["POST","GET","DELETE","UPDATE","PUT"],
     credentials: true
 }));
 app.use(cookieParser())
@@ -46,6 +47,7 @@ const PORT = process.env.PORT || 4000; // set port, listen for requests
 app.use("/api/users", userRouter);
 app.use("/api/designation", designationRouter);
 app.use("/api/department", departmentRouter);
+app.use("/api/employee", employeeRouter);
 
 
 
