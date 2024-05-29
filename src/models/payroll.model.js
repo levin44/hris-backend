@@ -1,10 +1,22 @@
 const sql = require('../config/database');
 
 module.exports = {
-  create: (data, callBack) => {
+  createPayroll: (data, callBack) => {
     sql.query(
-      `INSERT INTO users (Emp_ID, Passwords, Role) VALUES (?, ?, ?)`,
-      [data.username, data.password, data.role],
+      `INSERT INTO payroll (
+        OT_Hours, 
+        EPF,
+        ETF,
+        Bonus,
+        Basic_Salary
+      ) VALUES (?, ?, ?, ?, ?)`,
+      [
+          data.otHours, 
+          data.epf,
+          data.etf,
+          data.allowance,
+          data.salary
+      ],
       (error, results) => {
         if (error) {
           return callBack(error);
@@ -14,9 +26,9 @@ module.exports = {
     );
   },
 
-  getUserById: (id, callBack) => {
+  getPayrollsById: (id, callBack) => {
     sql.query(
-      `SELECT * FROM users WHERE Emp_ID = ?`,
+      `SELECT * FROM payroll WHERE Payroll_ID = ?`,
       [id],
       (error, results) => {
         if (error) {
@@ -27,9 +39,10 @@ module.exports = {
     );
   },
 
-  getUsers: callBack => {
+
+  getPayrolls: callBack => {
     sql.query(
-      `SELECT Emp_ID, password, role FROM login`,
+      `SELECT * FROM payroll`,
       [],
       (error, results) => {
         if (error) {
@@ -40,10 +53,26 @@ module.exports = {
     );
   },
 
-  updateUser: (data, callBack) => {
+  updatePayroll: (id, data, callBack) => {
     sql.query(
-      `UPDATE login SET password = ?, role = ? WHERE username = ?`,
-      [data.password, data.role, data.username],
+      `UPDATE payroll SET 
+      OT_Hours = ?, 
+      EPF = ?,
+      ETF = ?,
+      Bonus = ?,
+      Basic_Salary = ?
+      WHERE Payroll_ID = ?`,
+      [
+        // data.department, 
+        data.otHours, 
+        // data.noPayLeaves,
+        // data.taxPercentage,
+        data.epf,
+        data.etf,
+        data.allowance,
+        data.salary,
+        id
+      ],
       (error, results) => {
         if (error) {
           return callBack(error);
@@ -53,10 +82,10 @@ module.exports = {
     );
   },
 
-  deleteUser: (username, callBack) => {
+  deletePayroll: (id, callBack) => {
     sql.query(
-      `DELETE FROM login WHERE username = ?`,
-      [username],
+      `DELETE FROM payroll WHERE Payroll_ID = ?`,
+      [id],
       (error, results) => {
         if (error) {
           return callBack(error);
