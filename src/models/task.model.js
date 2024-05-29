@@ -7,18 +7,16 @@ module.exports = {
         Emp_ID, 
         Start_Date, 
         End_Date,
-        Statuss,
         Title,
         Description
         
-      ) VALUES (?, ?, ?, ?, ?, ?)`,
+      ) VALUES (?, ?, ?, ?, ?)`,
       [
-        data.fullName, 
-        data.department, 
-        data.designation,
-        data.employmentStartDate,
-        data.emergencyContactName,
-        data.bloodCategory,
+        data.assignedTo, 
+        data.startTime, 
+        data.endTime,
+        data.title,
+        data.description,
       ],
       (error, results) => {
         if (error) {
@@ -79,12 +77,11 @@ module.exports = {
       Description = ?
       WHERE Task_ID = ?`,
       [
-        data.fullName, 
-        data.department, 
-        data.designation,
-        data.employmentStartDate,
-        data.emergencyContactName,
-        data.bloodCategory,
+        data.assignedTo, 
+        data.startTime, 
+        data.endTime,
+        data.title,
+        data.description,
         id
       ],
       (error, results) => {
