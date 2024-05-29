@@ -55,86 +55,89 @@ app.use("/api/payroll", payrollRouter);
 
 
 
-// const verifyUser = (req, res, next) => {
-//     const token = req.cookies.token;
-//     if (!token) {
-//         return res.json({ Error: "you are not authenticated" });
-//     } else {
-//         jwt.verify(token, "jwt-secret-key", (err, decoded) => {
-//             if (err) {
-//                 return req.json({ Error: "token is incorrect" });
-//             } else {
-//                 req.name = decoded.name;
-//                 req.role = decoded.role;
-//                 next();
-//             }
-//         })
-//     }
-// }
+const verifyUser = (req, res, next) => {
+    let token = req.get("authorization");
+    if (!token) {
+        return res.status(401).json({ Error: "You are not authenticated" });
+    } else {
+        // Bearer token format handling
+        if (token.startsWith("Bearer ")) {
+            token = token.slice(7, token.length).trimLeft();
+        }
+        jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ Error: "Token is incorrect" });
+            } else {
+                req.empId = decoded.empId;
+                req.role = decoded.role;
+                next();
+            }
+        });
+    }
+};
 
-// app.get('/', verifyUser, (req, res) => {
-//     return res.json({ Status: "Success", name: req.name,role:req.role });
-// })
-
+app.get('/getuser', verifyUser, (req, res) => {
+    return res.json({ Status: "Success", empId: req.empId, role: req.role });
+});
 
 // app.get('/checkauth', verifyjwt, (req, res) => {
 //     return res.json({ message: "Authenticated", username: req.username, success: true });
 // });
 
-app.get('/checkauth', checkToken, (req, res) => {
-    return res.json({ message: "Authenticated", success: true, data: req.user });
-});
+// app.get('/checkauth', checkToken, (req, res) => {
+//     return res.json({ message: "Authenticated", success: true, data: req.user });
+// });
 
-app.post('/signup',(req,res)=>{
-    //delete this before production !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    console.log('username',req.body.username);
-    console.log('password',req.body.password);
+// app.post('/signup',(req,res)=>{
+//     //delete this before production !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//     console.log('username',req.body.username);
+//     console.log('password',req.body.password);
 
-    const sql = "INSERT INTO login (`username`, `password`) VALUES (?, ?)";
+//     const sql = "INSERT INTO login (`username`, `password`) VALUES (?, ?)";
 
-    //hash password
-    bcrypt.hash(req.body.password.toString(), salt, (err, hash) => {
-        if (err) return req.json({ Error: "Error when hashing password" });
-        const values = [
-            req.body.username,
-            hash
-        ]
+//     //hash password
+//     bcrypt.hash(req.body.password.toString(), salt, (err, hash) => {
+//         if (err) return req.json({ Error: "Error when hashing password" });
+//         const values = [
+//             req.body.username,
+//             hash
+//         ]
   
-        sqldb.query(sql,values,(err,result) =>{
-            if(err) return res.json({Message: "Error saving to db-signup"});
-            return res.json({Status: "Success"});
-        })
-    })
-}); 
+//         sqldb.query(sql,values,(err,result) =>{
+//             if(err) return res.json({Message: "Error saving to db-signup"});
+//             return res.json({Status: "Success"});
+//         })
+//     })
+// }); 
 
 
 
-app.post('/login',(req,res) => {
-    const sql = "SELECT * FROM login WHERE username = ?";
-    sqldb.query(sql, [req.body.username,], (err,data)=>{
-        console.log('data',data)
-        if (err) return res.json({Error: "Error username in server"});
-        if(data.length>0){
-            bcrypt.compare(req.body.password.toString(),data[0].password,(err,response)=>{
-                if(err) return res.json({Error: "Password compare error"});
-                if(response){
-                    const name = data[0].username;
-                    const role = data[0].role;
+// app.post('/login',(req,res) => {
+//     const sql = "SELECT * FROM login WHERE username = ?";
+//     sqldb.query(sql, [req.body.username,], (err,data)=>{
+//         console.log('data',data)
+//         if (err) return res.json({Error: "Error username in server"});
+//         if(data.length>0){
+//             bcrypt.compare(req.body.password.toString(),data[0].password,(err,response)=>{
+//                 if(err) return res.json({Error: "Password compare error"});
+//                 if(response){
+//                     const name = data[0].username;
+//                     const role = data[0].role;
 
-                    const token = jwt.sign({name,role}, "jwt-secret-key",{expiresIn: '1d'});
-                    // res.cookie('token', token, { sameSite: 'none', secure: true });
+//                     const token = jwt.sign({name,role}, "jwt-secret-key",{expiresIn: '1d'});
+//                     // res.cookie('token', token, { sameSite: 'none', secure: true });
 
-                    return res.json({Login: true, role: role,token});
-                } else {
-                    return res.json({Error: "password not matched"});
-                }
-            })
-            // return res.json({Login: true})
-        }else{
-            return res.json({Login: false, Error: "No email existed"})
-        }
-    })
-})
+//                     return res.json({Login: true, role: role,token});
+//                 } else {
+//                     return res.json({Error: "password not matched"});
+//                 }
+//             })
+//             // return res.json({Login: true})
+//         }else{
+//             return res.json({Login: false, Error: "No email existed"})
+//         }
+//     })
+// })
 
 
 

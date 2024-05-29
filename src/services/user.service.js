@@ -67,11 +67,14 @@ module.exports = {
         return callBack(new Error('Invalid employer ID'));
       }
 
-      const user = results[0];
-      const isPasswordValid = bcrypt.compareSync(data.password, user.Passwords);
+      const empId = results[0].Emp_ID;
+      const role = results[0].Role;
+      const dbpassword = results[0].Passwords;
+
+      const isPasswordValid = bcrypt.compareSync(data.password, dbpassword);
 
       if (isPasswordValid) {
-        const token = jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '1d' });
+        const token = jwt.sign({ empId,role }, process.env.JWT_KEY, { expiresIn: '1d' });
         return callBack(null, { token });
       } else {
         return callBack(new Error('Invalid password'));
