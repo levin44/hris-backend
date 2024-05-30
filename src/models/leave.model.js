@@ -1,22 +1,23 @@
 const sql = require('../config/database');
 
 module.exports = {
-  createTask: (data, callBack) => {
+  createLeave: (data, callBack) => {
     sql.query(
-      `INSERT INTO task (
+      `INSERT INTO leave_table (
         Emp_ID, 
+        Leave_Type, 
+        Reason, 
         Start_Date, 
         End_Date,
-        Title,
-        Description
-        
-      ) VALUES (?, ?, ?, ?, ?)`,
+        Statuss 
+      ) VALUES (?, ?, ?, ?, ?, ?)`,
       [
-        data.assignedTo, 
-        data.startTime, 
-        data.endTime,
-        data.title,
-        data.description,
+        data.employeeId, 
+        data.leaveType, 
+        data.reason, 
+        data.fromDate, 
+        data.toDate, 
+        data.status 
       ],
       (error, results) => {
         if (error) {
@@ -27,9 +28,9 @@ module.exports = {
     );
   },
 
-  getTasksById: (id, callBack) => {
+  getLeavesById: (id, callBack) => {
     sql.query(
-      `SELECT * FROM task WHERE Task_ID = ?`,
+      `SELECT * FROM leave_table WHERE Leave_ID = ?`,
       [id],
       (error, results) => {
         if (error) {
@@ -40,9 +41,9 @@ module.exports = {
     );
   },
 
-  getTasksByDepartment: (id, callBack) => {
+  getLeavesByDepartment: (id, callBack) => {
     sql.query(
-      `SELECT * FROM task WHERE Department_ID = ?`,
+      `SELECT * FROM leave_table WHERE Department_ID = ?`,
       [id],
       (error, results) => {
         if (error) {
@@ -53,9 +54,9 @@ module.exports = {
     );
   },
 
-  getTasks: callBack => {
+  getLeaves: callBack => {
     sql.query(
-      `SELECT * FROM task`,
+      `SELECT * FROM leave_table`,
       [],
       (error, results) => {
         if (error) {
@@ -66,21 +67,23 @@ module.exports = {
     );
   },
 
-  updateTask: (id, data, callBack) => {
+  updateLeave: (id, data, callBack) => {
     sql.query(
-      `UPDATE task SET 
+      `UPDATE leave_table SET 
       Emp_ID = ?, 
+      Leave_Type = ?, 
+      Reason = ?, 
       Start_Date = ?, 
       End_Date = ?, 
-      Title = ?, 
-      Description = ?
-      WHERE Task_ID = ?`,
+      Statuss = ? 
+      WHERE Emp_ID = ?`,
       [
-        data.assignedTo, 
-        data.startTime, 
-        data.endTime,
-        data.title,
-        data.description,
+        data.employeeId, 
+        data.leaveType, 
+        data.reason, 
+        data.fromDate, 
+        data.toDate, 
+        data.status, 
         id
       ],
       (error, results) => {
@@ -92,9 +95,9 @@ module.exports = {
     );
   },
 
-  deleteTask: (id, callBack) => {
+  deleteLeave: (id, callBack) => {
     sql.query(
-      `DELETE FROM Task WHERE Task_ID = ?`,
+      `DELETE FROM leave_table WHERE Leave_ID = ?`,
       [id],
       (error, results) => {
         if (error) {

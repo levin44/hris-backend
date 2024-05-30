@@ -15,6 +15,7 @@ const departmentRouter = require("./src/routes/department.routes");
 const employeeRouter = require("./src/routes/employee.routes");
 const taskRouter = require("./src/routes/task.routes");
 const payrollRouter = require("./src/routes/payroll.routes");
+const leaveRouter = require("./src/routes/leave.routes");
 
 
 //----------------MIDDLEWARES--------------------
@@ -52,6 +53,7 @@ app.use("/api/department", departmentRouter);
 app.use("/api/employee", employeeRouter);
 app.use("/api/task", taskRouter);
 app.use("/api/payroll", payrollRouter);
+app.use("/api/leave", leaveRouter);
 
 
 
