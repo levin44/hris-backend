@@ -29,7 +29,7 @@ module.exports = {
 
   getUsers: callBack => {
     sql.query(
-      `SELECT username, password, role FROM login`,
+      `SELECT Emp_ID, role FROM users`,
       [],
       (error, results) => {
         if (error) {
@@ -53,10 +53,24 @@ module.exports = {
     );
   },
 
-  deleteUser: (username, callBack) => {
+  resetPassword: (id, data, callBack) => {
     sql.query(
-      `DELETE FROM login WHERE username = ?`,
-      [username],
+      `UPDATE users SET Passwords = ? WHERE Emp_ID = ?`,
+      [data.password, id],
+      (error, results) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
+
+  deleteUser: (id, callBack) => {
+    sql.query(
+      `DELETE FROM users WHERE Emp_ID = ?`,
+      [id],
       (error, results) => {
         if (error) {
           return callBack(error);
