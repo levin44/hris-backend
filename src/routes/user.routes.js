@@ -5,10 +5,11 @@ const userController = require('../controllers/user.controller');
 const router = express.Router();
 
 router.post('/',  userController.createUser);
-router.get('/', checkToken, userController.getUsers);
+router.get('/', userController.getUsers);
 router.get('/:id', checkToken, userController.getUserById);
-router.patch('/', checkToken, userController.updateUser);
-router.delete('/', checkToken, userController.deleteUser);
+// router.patch('/', userController.updateUser);
+router.patch('/:id', userController.resetPassword);
+router.delete('/:id', userController.deleteUser);
 router.post('/login', userController.login);
 router.get('/checktoken', checkToken, (req, res)=>{
     return req.json({Status: "success", req})

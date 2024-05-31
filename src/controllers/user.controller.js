@@ -40,9 +40,21 @@ module.exports = {
     });
   },
 
+  resetPassword: (req, res) => {
+    const id = req.params.id;
+    const data = req.body;
+    userService.resetPassword(id, data, (err, results) => {
+      if (err) {
+        return res.status(500).json({ success: 0, message: err.message });
+      }
+      return res.status(200).json({ success: 1, message: 'Updated successfully' });
+    });
+  },
+
   deleteUser: (req, res) => {
-    const username = req.body.username;
-    userService.deleteUser(username, (err, results) => {
+    const id = req.params.id;
+    console.log('id',id);
+    userService.deleteUser(id, (err, results) => {
       if (err) {
         return res.status(500).json({ success: 0, message: err.message });
       }

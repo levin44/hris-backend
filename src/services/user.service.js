@@ -49,8 +49,20 @@ module.exports = {
     });
   },
 
-  deleteUser: (username, callBack) => {
-    userModel.deleteUser(username, (err, results) => {
+  resetPassword: (id, data, callBack) => {
+    const salt = bcrypt.genSaltSync(10);
+    data.password = bcrypt.hashSync(data.password, salt);
+
+    userModel.resetPassword(id, data, (err, results) => {
+      if (err) {
+        return callBack(err);
+      }
+      return callBack(null, results);
+    });
+  },
+
+  deleteUser: (id, callBack) => {
+    userModel.deleteUser(id, (err, results) => {
       if (err) {
         return callBack(err);
       }
