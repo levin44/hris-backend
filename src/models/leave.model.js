@@ -95,6 +95,19 @@ module.exports = {
     );
   },
 
+  updateLeaveStatus: (id, data, callBack) => {
+    sql.query(
+      `UPDATE leave_table SET Statuss = ? WHERE Leave_ID = ?`,
+      [data.status, id],
+      (error, results) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
   deleteLeave: (id, callBack) => {
     sql.query(
       `DELETE FROM leave_table WHERE Leave_ID = ?`,

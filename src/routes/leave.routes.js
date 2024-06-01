@@ -10,7 +10,7 @@ router.put('/:id', leaveController.updateLeave);
 
 router.post('/', leaveController.createLeave);
 router.get('/:id', leaveController.getLeavesById);
-// router.patch('/', checkToken, userController.updateUser);
+router.patch('/:id',leaveController.updateLeaveStatus);
 // router.post('/login', userController.login);
 // router.post('/signup', userController.signUp);
 

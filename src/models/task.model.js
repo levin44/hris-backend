@@ -8,14 +8,16 @@ module.exports = {
         Start_Date, 
         End_Date,
         Title,
+        Statuss,
         Description
         
-      ) VALUES (?, ?, ?, ?, ?)`,
+      ) VALUES (?, ?, ?, ?, ?, ?)`,
       [
         data.assignedTo, 
         data.startTime, 
         data.endTime,
         data.title,
+        data.status,
         data.description,
       ],
       (error, results) => {
@@ -73,6 +75,7 @@ module.exports = {
       Start_Date = ?, 
       End_Date = ?, 
       Title = ?, 
+      Statuss = ?, 
       Description = ?
       WHERE Task_ID = ?`,
       [
@@ -80,6 +83,7 @@ module.exports = {
         data.startTime, 
         data.endTime,
         data.title,
+        data.status,
         data.description,
         id
       ],

@@ -51,6 +51,17 @@ module.exports = {
     });
   },
 
+  updateLeaveStatus: (req, res) => {
+    const data = req.body;
+    const id = req.params.id
+    leaveService.updateLeaveStatus(id, data, (err, results) => {
+      if (err) {
+        return res.status(500).json({ success: 0, message: err.message });
+      }
+      return res.status(200).json({ success: 1, message: 'Updated successfully' });
+    });
+  },
+
   deleteLeave: (req, res) => {
     const id = req.params.id;
     leaveService.deleteLeave(id, (err, results) => {
