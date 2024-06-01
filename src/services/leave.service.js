@@ -55,6 +55,15 @@ module.exports = {
     });
   },
 
+  updateLeaveStatus: (id, data, callBack) => {
+    leaveModel.updateLeaveStatus(id, data, (err, results) => {
+      if (err) {
+        return callBack(err);
+      }
+      return callBack(null, results);
+    });
+  },
+
   deleteLeave: (id, callBack) => {
     leaveModel.deleteLeave(id, (err, results) => {
       if (err) {

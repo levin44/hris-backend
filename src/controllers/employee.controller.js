@@ -51,6 +51,17 @@ module.exports = {
     });
   },
 
+  updateEmployeeAllowance: (req, res) => {
+    const data = req.body;
+    const id = req.params.id
+    employeeService.updateEmployeeAllowance(id, data, (err, results) => {
+      if (err) {
+        return res.status(500).json({ success: 0, message: err.message });
+      }
+      return res.status(200).json({ success: 1, message: 'Updated successfully' });
+    });
+  },
+
   deleteEmployee: (req, res) => {
     const id = req.params.id;
     employeeService.deleteEmployee(id, (err, results) => {

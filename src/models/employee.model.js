@@ -9,6 +9,7 @@ module.exports = {
         Designation_ID,
         Start_Date,
         Emergency_Name,
+        Emergency_Contact,
         Blood_Type,
         Address,
         DOB,
@@ -16,14 +17,16 @@ module.exports = {
         NIC,
         Primary_Contact_No,
         Secondary_Contact_No,
+        Shift,
         Email
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)`,
       [
         data.fullName, 
         data.department, 
         data.designation,
         data.employmentStartDate,
         data.emergencyContactName,
+        data.emergencyContactNumber,
         data.bloodCategory,
         data.permanentAddress,
         data.dateOfBirth,
@@ -31,6 +34,7 @@ module.exports = {
         data.nicNumber,
         data.primaryContactNumber,
         data.secondaryContactNumber,
+        data.shift,
         data.emailAddress
       ],
       (error, results) => {
@@ -89,6 +93,7 @@ module.exports = {
       Designation_ID = ?, 
       Start_Date = ?, 
       Emergency_Name = ?, 
+      Emergency_Contact = ?, 
       Blood_Type = ?, 
       Address = ?, 
       DOB = ?, 
@@ -96,6 +101,7 @@ module.exports = {
       NIC = ?, 
       Primary_Contact_No = ?, 
       Secondary_Contact_No = ?, 
+      Shift = ?, 
       Email = ? 
       WHERE Emp_ID = ?`,
       [
@@ -104,6 +110,7 @@ module.exports = {
         data.designation,
         data.employmentStartDate,
         data.emergencyContactName,
+        data.emergencyContactNumber,
         data.bloodCategory,
         data.permanentAddress,
         data.dateOfBirth,
@@ -111,9 +118,23 @@ module.exports = {
         data.nicNumber,
         data.primaryContactNumber,
         data.secondaryContactNumber,
+        data.shift,
         data.emailAddress,
         id
       ],
+      (error, results) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
+  updateEmployeeAllowance: (id, data, callBack) => {
+    sql.query(
+      `UPDATE employee SET Allowance = ? WHERE Emp_ID = ?`,
+      [data.allowance, id],
       (error, results) => {
         if (error) {
           return callBack(error);

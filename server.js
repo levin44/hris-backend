@@ -16,6 +16,8 @@ const employeeRouter = require("./src/routes/employee.routes");
 const taskRouter = require("./src/routes/task.routes");
 const payrollRouter = require("./src/routes/payroll.routes");
 const leaveRouter = require("./src/routes/leave.routes");
+const attendanceRouter = require("./src/routes/attendance.routes");
+const announcementRouter = require("./src/routes/announcement.routes");
 
 
 //----------------MIDDLEWARES--------------------
@@ -54,7 +56,8 @@ app.use("/api/employee", employeeRouter);
 app.use("/api/task", taskRouter);
 app.use("/api/payroll", payrollRouter);
 app.use("/api/leave", leaveRouter);
-
+app.use("/api/attendance", attendanceRouter);
+app.use("/api/announcement", announcementRouter);
 
 
 const verifyUser = (req, res, next) => {

@@ -46,8 +46,16 @@ module.exports = {
   },
 
   updateEmployee: (id, data, callBack) => {
-  
     employeeModel.updateEmployee(id, data, (err, results) => {
+      if (err) {
+        return callBack(err);
+      }
+      return callBack(null, results);
+    });
+  },
+
+  updateEmployeeAllowance: (id, data, callBack) => {
+    employeeModel.updateEmployeeAllowance(id, data, (err, results) => {
       if (err) {
         return callBack(err);
       }

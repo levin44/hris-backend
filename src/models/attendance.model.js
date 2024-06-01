@@ -1,25 +1,21 @@
 const sql = require('../config/database');
 
 module.exports = {
-  createPayroll: (data, callBack) => {
+  createAttendance: (data, callBack) => {
     sql.query(
-      `INSERT INTO payroll (
-        OT_Hours, 
-        EPF,
-        ETF,
-        Allowance,
-        Tax,
-        Income,
-        Basic_Salary
+      `INSERT INTO attendance (
+        Dates, 
+        In_Time, 
+        Out_Time, 
+        Emp_ID, 
+        Statuss
       ) VALUES (?, ?, ?, ?, ?)`,
       [
-          data.otHours, 
-          data.epf,
-          data.etf,
-          data.allowance,
-          data.tax,
-          data.income,
-          data.salary
+        data.date, 
+        data.inTime, 
+        data.outTime,
+        data.empId,
+        data.status
       ],
       (error, results) => {
         if (error) {
@@ -30,9 +26,9 @@ module.exports = {
     );
   },
 
-  getPayrollsById: (id, callBack) => {
+  getAttendancesById: (id, callBack) => {
     sql.query(
-      `SELECT * FROM payroll WHERE Payroll_ID = ?`,
+      `SELECT * FROM attendance WHERE Att_ID = ?`,
       [id],
       (error, results) => {
         if (error) {
@@ -44,9 +40,9 @@ module.exports = {
   },
 
 
-  getPayrolls: callBack => {
+  getAttendances: callBack => {
     sql.query(
-      `SELECT * FROM payroll`,
+      `SELECT * FROM attendance`,
       [],
       (error, results) => {
         if (error) {
@@ -57,25 +53,21 @@ module.exports = {
     );
   },
 
-  updatePayroll: (id, data, callBack) => {
+  updateAttendance: (id, data, callBack) => {
     sql.query(
-      `UPDATE payroll SET 
-      OT_Hours = ?, 
-      EPF = ?,
-      ETF = ?,
-      Allowance = ?,
-      Tax = ?,
-      Income = ?,
-      Basic_Salary = ?
-      WHERE Payroll_ID = ?`,
+      `UPDATE attendance SET 
+      Dates = ?, 
+      In_Time = ?, 
+      Out_Time = ?, 
+      Emp_ID = ?, 
+      Statuss = ? 
+      WHERE Emp_ID = ?`,
       [
-        data.otHours, 
-        data.epf,
-        data.etf,
-        data.allowance,
-        data.tax,
-        data.income,
-        data.salary,
+        data.date, 
+        data.inTime, 
+        data.outTime,
+        data.empId,
+        data.status,
         id
       ],
       (error, results) => {
@@ -87,9 +79,9 @@ module.exports = {
     );
   },
 
-  deletePayroll: (id, callBack) => {
+  deleteAttendance: (id, callBack) => {
     sql.query(
-      `DELETE FROM payroll WHERE Payroll_ID = ?`,
+      `DELETE FROM attendance WHERE Att_ID = ?`,
       [id],
       (error, results) => {
         if (error) {
