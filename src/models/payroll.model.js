@@ -4,22 +4,30 @@ module.exports = {
   createPayroll: (data, callBack) => {
     sql.query(
       `INSERT INTO payroll (
-        OT_Hours, 
-        EPF,
-        ETF,
+        Emp_ID,
+        Basic_Salary,
+        OT_Hours,
         Allowance,
+        OT_Payment,
+        ETF,
+        EPF,
         Tax,
         Income,
-        Basic_Salary
-      ) VALUES (?, ?, ?, ?, ?)`,
+        Date
+      ) VALUES ?`,
       [
-          data.otHours, 
-          data.epf,
-          data.etf,
-          data.allowance,
-          data.tax,
-          data.income,
-          data.salary
+        data.map(item => [
+          item.employeeId,
+          item.baseSalary,
+          item.otHours,
+          item.allowance,
+          item.otPayment,
+          item.etf,
+          item.epf,
+          item.tax,
+          item.income,
+          item.date
+      ])
       ],
       (error, results) => {
         if (error) {
