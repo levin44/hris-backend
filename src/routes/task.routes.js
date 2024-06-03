@@ -10,7 +10,6 @@ router.put('/:id', taskController.updateTask);
 
 router.post('/', taskController.createTask);
 router.get('/:id', taskController.getTasksById);
-// router.patch('/', checkToken, userController.updateUser);
-
+router.patch('/:id',taskController.updateTaskStatus);
 
 module.exports = router;

@@ -10,8 +10,5 @@ router.put('/:id', attendanceController.updateAttendance);
 
 router.post('/', attendanceController.createAttendance);
 router.get('/:id', attendanceController.getAttendancesById);
-// router.patch('/', checkToken, userController.updateUser);
-// router.post('/login', userController.login);
-// router.post('/signup', userController.signUp);
 
 module.exports = router;

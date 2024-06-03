@@ -10,8 +10,5 @@ router.put('/:id', designationController.updateDesignation);
 
 router.post('/', designationController.createDesignation);
 router.get('/:id', designationController.getDesignationsById);
-// router.patch('/', checkToken, userController.updateUser);
-// router.post('/login', userController.login);
-// router.post('/signup', userController.signUp);
 
 module.exports = router;

@@ -12,7 +12,7 @@ const verifyjwt = (req, res, next) => {
         return res.status(401).json({ message: "Invalid token format" });
     }
 
-    jwt.verify(tokenParts[1], "jwt-secret-key", (err, decoded) => {
+    jwt.verify(tokenParts[1], process.env.JWT_KEY, (err, decoded) => {
         if (err) {
             return res.status(401).json({ message: "Not Authenticated" });
         } else {

@@ -51,6 +51,17 @@ module.exports = {
     });
   },
 
+  updateTaskStatus: (req, res) => {
+    const data = req.body;
+    const id = req.params.id
+    taskService.updateTaskStatus(id, data, (err, results) => {
+      if (err) {
+        return res.status(500).json({ success: 0, message: err.message });
+      }
+      return res.status(200).json({ success: 1, message: 'Updated successfully' });
+    });
+  },
+
   deleteTask: (req, res) => {
     const id = req.params.id;
     taskService.deleteTask(id, (err, results) => {
