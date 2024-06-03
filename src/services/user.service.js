@@ -94,23 +94,5 @@ module.exports = {
     });
   },
 
-  // signUp: (data, callBack) => {
-  //   const salt = bcrypt.genSaltSync(10);
-  //   bcrypt.hash(data.password, salt, (err, hash) => {
-  //     if (err) return callBack(new Error("Error when hashing password"));
-
-  //     const newUser = {
-  //       username: data.username,
-  //       password: hash
-  //     };
-
-  //     userModel.create(newUser, (err, results) => {
-  //       if (err) {
-  //         return callBack(err);
-  //       }
-  //       return callBack(null, results);
-  //     });
-  //   });
-  // }
 
 };

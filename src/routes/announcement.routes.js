@@ -10,8 +10,5 @@ router.put('/:id', announcementController.updateAnnouncement);
 
 router.post('/', announcementController.createAnnouncement);
 router.get('/:id', announcementController.getAnnouncementsById);
-// router.patch('/', checkToken, userController.updateUser);
-// router.post('/login', userController.login);
-// router.post('/signup', userController.signUp);
 
 module.exports = router;

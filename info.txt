@@ -1,7 +1,0 @@
-username 1
-password 
-role admin
-
-username 2
-password 5m1nd&n$3
-role emp

@@ -61,14 +61,5 @@ module.exports = {
     });
   },
 
-  // signUp: (req, res) => {
-  //   const data = req.body;
-  //   userService.signUp(data, (err, results) => {
-  //     if (err) {
-  //       return res.status(500).json({ success: 0, message: err.message });
-  //     }
-  //     return res.status(200).json({ success: 1, message: 'Login created successfully' });
-  //   });
-  // }
 
 };

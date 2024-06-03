@@ -55,6 +55,15 @@ module.exports = {
     });
   },
 
+  updateTaskStatus: (id, data, callBack) => {
+    taskModel.updateTaskStatus(id, data, (err, results) => {
+      if (err) {
+        return callBack(err);
+      }
+      return callBack(null, results);
+    });
+  },
+
   deleteTask: (id, callBack) => {
     taskModel.deleteTask(id, (err, results) => {
       if (err) {

@@ -96,6 +96,19 @@ module.exports = {
     );
   },
 
+  updateTaskStatus: (id, data, callBack) => {
+    sql.query(
+      `UPDATE task SET Statuss = ? WHERE Task_ID = ?`,
+      [data.status, id],
+      (error, results) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
   deleteTask: (id, callBack) => {
     sql.query(
       `DELETE FROM Task WHERE Task_ID = ?`,

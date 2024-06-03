@@ -11,7 +11,5 @@ router.put('/:id', employeeController.updateEmployee);
 router.post('/', employeeController.createEmployee);
 router.get('/:id', employeeController.getEmployeesById);
 router.patch('/:id', employeeController.updateEmployeeAllowance);
-// router.post('/login', userController.login);
-// router.post('/signup', userController.signUp);
 
 module.exports = router;
