@@ -52,8 +52,8 @@ module.exports = {
   },
 
   deletePayroll: (req, res) => {
-    const id = req.params.id;
-    payrollService.deletePayroll(id, (err, results) => {
+    const data = req.body;
+    payrollService.deletePayroll(data, (err, results) => {
       if (err) {
         return res.status(500).json({ success: 0, message: err.message });
       }

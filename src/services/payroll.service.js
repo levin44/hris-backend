@@ -55,8 +55,8 @@ module.exports = {
     });
   },
 
-  deletePayroll: (id, callBack) => {
-    payrollModel.deletePayroll(id, (err, results) => {
+  deletePayroll: (data, callBack) => {
+    payrollModel.deletePayroll(data, (err, results) => {
       if (err) {
         return callBack(err);
       }

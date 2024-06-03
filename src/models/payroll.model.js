@@ -95,10 +95,10 @@ module.exports = {
     );
   },
 
-  deletePayroll: (id, callBack) => {
+  deletePayroll: (data, callBack) => {
+    const idList = data.payrollIds.join(',');
     sql.query(
-      `DELETE FROM payroll WHERE Payroll_ID = ?`,
-      [id],
+      `DELETE FROM payroll WHERE Payroll_ID IN (${idList})`,
       (error, results) => {
         if (error) {
           return callBack(error);
