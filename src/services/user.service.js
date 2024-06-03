@@ -87,7 +87,7 @@ module.exports = {
 
       if (isPasswordValid) {
         const token = jwt.sign({ empId,role }, process.env.JWT_KEY, { expiresIn: '1d' });
-        return callBack(null, { token });
+        return callBack(null, { token, role });
       } else {
         return callBack(new Error('Invalid password'));
       }

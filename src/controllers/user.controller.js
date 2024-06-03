@@ -68,7 +68,7 @@ module.exports = {
       if (err) {
         return res.status(401).json({ success: 0, message: err.message });
       }
-      return res.status(200).json({ success: 1,Login: true, message: 'Login successfully', token: results.token });
+      return res.status(200).json({ success: 1, message: 'Login successfully', token: results.token, role: results.role });
     });
   },
 

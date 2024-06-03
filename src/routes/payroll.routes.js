@@ -5,7 +5,8 @@ const payrollController = require('../controllers/payroll.controller');
 const router = express.Router();
 
 router.get('/', payrollController.getPayrolls);
-router.delete('/:id', payrollController.deletePayroll);
+//delete many ids at once
+router.delete('/', payrollController.deletePayroll);
 router.put('/:id', payrollController.updatePayroll);
 
 router.post('/', payrollController.createPayroll);
